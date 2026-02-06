@@ -19,7 +19,7 @@ import { Progress } from "@/components/ui/progress";
 import Quiz from "@/components/quiz";
 import { Link } from "@/components/ui/link";
 import NextLink from "next/link";
-import { generateQuizTitle } from "./actions";
+//import { generateQuizTitle } from "./actions";
 import { AnimatePresence, motion } from "framer-motion";
 import { VercelIcon, GitIcon } from "@/components/icons";
 
@@ -31,22 +31,20 @@ export default function ChatWithFiles() {
   const [isDragging, setIsDragging] = useState(false);
   const [title, setTitle] = useState<string>();
 
-  const {
-    submit,
-    object: partialQuestions,
-    isLoading,
-  } = experimental_useObject({
-    api: "/api/generate-quiz",
-    schema: questionsSchema,
-    initialValue: undefined,
-    onError: (error) => {
-      toast.error("Failed to generate quiz. Please try again.");
-      setFiles([]);
-    },
-    onFinish: ({ object }) => {
-      setQuestions(object ?? []);
-    },
-  });
+  const { submit, object: partialQuestions, isLoading } = experimental_useObject({
+  api: "/api/generate-quiz",
+  schema: questionsSchema,
+  initialValue: undefined,
+  onError: (error) => {
+    console.error("useObject onError:", error);
+    toast.error("Failed to generate quiz. Please try again.");
+    setFiles([]);
+  },
+  onFinish: ({ object, error }) => {
+    console.log("useObject onFinish:", { object, error });
+    setQuestions(object ?? []);
+  },
+});
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
@@ -90,8 +88,8 @@ export default function ChatWithFiles() {
       })),
     );
     submit({ files: encodedFiles });
-    const generatedTitle = await generateQuizTitle(encodedFiles[0].name);
-    setTitle(generatedTitle);
+  // const generatedTitle = await generateQuizTitle(encodedFiles[0].name);
+  // setTitle(generatedTitle);
   };
 
   const clearPDF = () => {
@@ -203,6 +201,13 @@ export default function ChatWithFiles() {
               )}
             </Button>
           </form>
+          <div className="text-xs whitespace-pre-wrap mt-4">
+  <div>isLoading: {String(isLoading)}</div>
+  <div>files: {files.length}</div>
+  <div>partialQuestions length: {partialQuestions?.length ?? "null"}</div>
+  <div>questions length: {questions.length}</div>
+  <div>questions: {JSON.stringify(questions, null, 2)}</div>
+</div>
         </CardContent>
         {isLoading && (
           <CardFooter className="flex flex-col space-y-4">

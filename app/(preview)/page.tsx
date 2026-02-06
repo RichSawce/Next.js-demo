@@ -202,11 +202,7 @@ export default function ChatWithFiles() {
             </Button>
           </form>
           <div className="text-xs whitespace-pre-wrap mt-4">
-  <div>isLoading: {String(isLoading)}</div>
-  <div>files: {files.length}</div>
-  <div>partialQuestions length: {partialQuestions?.length ?? "null"}</div>
-  <div>questions length: {questions.length}</div>
-  <div>questions: {JSON.stringify(questions, null, 2)}</div>
+  
 </div>
         </CardContent>
         {isLoading && (

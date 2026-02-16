@@ -275,7 +275,7 @@ export default function ChatWithFiles() {
 
                 {files.length > 0 && (
                   <p className="text-xs text-muted-foreground mt-2">
-                    Ready to generate a 4-question knowledge check.
+                    Ready to generate a 6-question knowledge check.
                   </p>
                 )}
               </div>

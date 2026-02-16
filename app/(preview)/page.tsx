@@ -104,10 +104,10 @@ export default function ChatWithFiles() {
     setQuestions([]);
   };
 
-  const progress = partialQuestions ? (partialQuestions.length / 4) * 100 : 0;
+  const progress = partialQuestions ? (partialQuestions.length / 6) * 100 : 0;
 
   // When quiz is ready, render your existing quiz component
-  if (questions.length === 4) {
+  if (questions.length === 6) {
     return (
       <Quiz
         title={title ?? "Internal Training Quiz"}

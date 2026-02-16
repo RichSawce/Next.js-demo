@@ -104,10 +104,10 @@ export default function ChatWithFiles() {
     setQuestions([]);
   };
 
-  const progress = partialQuestions ? (partialQuestions.length / 6) * 100 : 0;
+  const progress = partialQuestions ? (partialQuestions.length / 4) * 100 : 0;
 
   // When quiz is ready, render your existing quiz component
-  if (questions.length === 6) {
+  if (questions.length === 4) {
     return (
       <Quiz
         title={title ?? "Internal Training Quiz"}
@@ -210,7 +210,7 @@ export default function ChatWithFiles() {
                 </CardTitle>
                 <CardDescription className="text-sm">
                   Use an approved internal policy or training document (PDF) to
-                  generate a 6-question quiz for employees.
+                  generate a 4-question quiz for employees.
                 </CardDescription>
               </div>
             </div>
@@ -275,7 +275,7 @@ export default function ChatWithFiles() {
 
                 {files.length > 0 && (
                   <p className="text-xs text-muted-foreground mt-2">
-                    Ready to generate a 6-question knowledge check.
+                    Ready to generate a 4-question knowledge check.
                   </p>
                 )}
               </div>
@@ -308,7 +308,7 @@ export default function ChatWithFiles() {
                   <div className="h-2 w-2 rounded-full bg-yellow-500/50 animate-pulse" />
                   <span className="text-muted-foreground">
                     {partialQuestions
-                      ? `Preparing question ${partialQuestions.length + 1} of 6`
+                      ? `Preparing question ${partialQuestions.length + 1} of 4`
                       : "Reviewing document content…"}
                   </span>
                 </div>

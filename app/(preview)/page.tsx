@@ -210,7 +210,7 @@ export default function ChatWithFiles() {
                 </CardTitle>
                 <CardDescription className="text-sm">
                   Use an approved internal policy or training document (PDF) to
-                  generate a 4-question quiz for employees.
+                  generate a 6-question quiz for employees.
                 </CardDescription>
               </div>
             </div>
@@ -308,7 +308,7 @@ export default function ChatWithFiles() {
                   <div className="h-2 w-2 rounded-full bg-yellow-500/50 animate-pulse" />
                   <span className="text-muted-foreground">
                     {partialQuestions
-                      ? `Preparing question ${partialQuestions.length + 1} of 4`
+                      ? `Preparing question ${partialQuestions.length + 1} of 6`
                       : "Reviewing document content…"}
                   </span>
                 </div>
